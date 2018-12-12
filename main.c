@@ -65,10 +65,10 @@ int main(int argc, char *argv[]) {
 				printf("printing all the movies in the list.....\n\n\n");
 				
 				ndPtr = list;
-				while (fscanf(fp,"%s, %s, %i, %f", name, country, runTime, score) != EOF/* repeat until the ndPtr points to the end node */)
+				while (ndPtr != NULL /* repeat until the ndPtr points to the end node */)
 				{
 					//2.2 print a movie data : use functions of movie.c and linkedList.c
-					//ndPtr = the next node of the ndPtr;
+					void* list_getNextNd(void* nd);//ndPtr = the next node of the ndPtr;
 					//get object of ndPtr to mvInfo void pointer
 					//print the contents of the mvInfo
 				}
@@ -76,14 +76,15 @@ int main(int argc, char *argv[]) {
 				break;
 				
 			case 2: //print movies of specific country
-				//2.3.1 get country name to search for
+				printf("select a country : \n");//2.3.1 get country name to search for
+				scanf("%s", country);
 				
 				ndPtr = list;
 					while (fscanf(fp,"%s, %s, %i, %f", name, country, runTime, score) != EOF/* repeat until the ndPtr points to the end node */)
 				{
 					//2.3.2 print a movie data : use functions of movie.c and linkedList.c
-					//ndPtr = the next node of the ndPtr;
-					//get object of ndPtr to mvInfo void pointer
+					ndPtr = ndPtr;//ndPtr = the next node of the ndPtr;
+					char* mv_getCountry(void* obj)//get object of ndPtr to mvInfo void pointer
 					//if the input country matches to the country of the movie,
 					//then print the contents of the mvInfo
 				}
