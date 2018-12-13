@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 	//1.3 read each movie data from the file and add it to the linked list
 	while ( fscanf(fp,"%s, %s, %i, %f", name, country, &runTime, &score) != EOF /* read name, country, runtime and score*/ )
 	{	
-		mvInfo = mv_genMvInfo(name, score, runTIme, country) //generate a movie info instance(mvInfo) with function mv_genMvInfo()
+		mvInfo = mv_genMvInfo(name, score, runTime, country); //generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
 	}
 
@@ -62,9 +62,9 @@ int main(int argc, char *argv[]) {
 				ndPtr = list;
 				while ( list_isEndNode(ndPtr) == 0 /* repeat until the ndPtr points to the end node */)
 				{
-					//2.2 print a movie data : use functions of movie.c and linkedList.c
-					void* list_getNextNd(void* nd);//ndPtr = the next node of the ndPtr;
-					//get object of ndPtr to mvInfo void pointer
+					mv_print(ndPtr);//2.2 print a movie data : use functions of movie.c and linkedList.c
+					//ndPtr = the next node of the ndPtr;
+					list_getNextNd(ndPtr);//get object of ndPtr to mvInfo void pointer
 					//print the contents of the mvInfo
 				}
 				
@@ -75,11 +75,11 @@ int main(int argc, char *argv[]) {
 				scanf("%s", country);
 				
 				ndPtr = list;
-					while (int list_isEndNode(void* nd)/* repeat until the ndPtr points to the end node */)
+					while (list_isEndNode(ndPtr) == 0 /* repeat until the ndPtr points to the end node */)
 				{
 					//2.3.2 print a movie data : use functions of movie.c and linkedList.c
-					ndPtr = ndPtr;//ndPtr = the next node of the ndPtr;
-					char* mv_getCountry(void* obj)//get object of ndPtr to mvInfo void pointer
+					//ndPtr = the next node of the ndPtr;
+					//get object of ndPtr to mvInfo void pointer
 					//if the input country matches to the country of the movie,
 					//then print the contents of the mvInfo
 				}
@@ -90,7 +90,7 @@ int main(int argc, char *argv[]) {
 				//2.4.1 get minimal runtime value to search for
 				
 				ndPtr = list;
-					while (fscanf(fp,"%s, %s, %i, %f", name, country, runTime, score) != EOF/* repeat until the ndPtr points to the end node */)
+					while (list_isEndNode(ndPtr) == 0 /* repeat until the ndPtr points to the end node */)
 				{
 					//2.4.2 print a movie data : use functions of movie.c and linkedList.c
 					//ndPtr = the next node of the ndPtr;
@@ -105,7 +105,7 @@ int main(int argc, char *argv[]) {
 				//2.5.1 get minimal score value to search for
 				
 				ndPtr = list;
-					while (fscanf(fp,"%s, %s, %i, %f", name, country, runTime, score) != EOF/* repeat until the ndPtr points to the end node */)
+					while (list_isEndNode(ndPtr) == 0 /* repeat until the ndPtr points to the end node */)
 				{
 					//2.5.2 print a movie data : use functions of movie.c and linkedList.c
 					//ndPtr = the next node of the ndPtr;
