@@ -102,21 +102,35 @@ int main(int argc, char *argv[]) {
 				
 			case 3:
 				//2.4.1 get minimal runtime value to search for
-				
+				printf("lowest runtime : ");
+				scanf("%i", &runTime);
 				ndPtr = list;
 					while (list_isEndNode(ndPtr) == 0 /* repeat until the ndPtr points to the end node */)
 				{
 					//2.4.2 print a movie data : use functions of movie.c and linkedList.c
 					ndPtr = list_getNextNd(ndPtr);//ndPtr = the next node of the ndPtr;
 					mvInfo = list_getNdObj(ndPtr);//get object of ndPtr to mvInfo void pointer
+					
+					if(runTime <= mv_getRunTime(mvInfo))
+					{
+						mv_print(mvInfo);
+						printf("\n");
+						cnt++;
+					}
 					//if the input runtime is lower than the runtime of the movie,
 					//then print the contents of the mvInfo
 				}
+				printf("--------------------\n");
+				printf("\n");
+				printf("totally %i movies are listed\n", cnt);
+				printf("\n");
 				
 				break;
 				
 			case 4:
 				//2.5.1 get minimal score value to search for
+				printf("lowest score : ");
+				scanf("%f", &score);
 				
 				ndPtr = list;
 					while (list_isEndNode(ndPtr) == 0 /* repeat until the ndPtr points to the end node */)
@@ -124,9 +138,20 @@ int main(int argc, char *argv[]) {
 					//2.5.2 print a movie data : use functions of movie.c and linkedList.c
 					ndPtr = list_getNextNd(ndPtr);//ndPtr = the next node of the ndPtr;
 					mvInfo = list_getNdObj(ndPtr);//get object of ndPtr to mvInfo void pointer
+					
+					if(score <= mv_getScore(mvInfo))
+					{
+						mv_print(mvInfo);
+						printf("\n");
+						cnt++;
+					}
 					//if the input score is lower than the score of the movie,
 					//then print the contents of the mvInfo
 				}
+				printf("--------------------\n");
+				printf("\n");
+				printf("totally %i movies are listed\n", cnt);
+				printf("\n");
 				break;
 				
 			case 5:
