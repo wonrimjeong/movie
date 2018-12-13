@@ -29,15 +29,9 @@ int main(int argc, char *argv[]) {
 	printf("Reading the data files...\n");
 	
 	//1.3 read each movie data from the file and add it to the linked list
-	while ( fscanf(fp,"%s, %s, %i, %f", name, country, runTime, score) != EOF /* read name, country, runtime and score*/ )
+	while ( fscanf(fp,"%s, %s, %i, %f", name, country, &runTime, &score) != EOF /* read name, country, runtime and score*/ )
 	{	
-		if (fp == NULL)
-		{
-			printf("ERROR!\n");
-			return -1;
-		}
-	
-		void* mv_genMvInfo(char* name, float score, int runTime, char* country); //generate a movie info instance(mvInfo) with function mv_genMvInfo()
+		mvInfo = mv_genMvInfo(name, score, runTIme, country) //generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
 	}
 
@@ -58,6 +52,7 @@ int main(int argc, char *argv[]) {
 		printf("-------------------- Menu --------------------\n\n");
 
 		printf("-- select an option : \n");//2.1 print menu message and get input option
+		scanf("%d", &option);
 		
 		switch(option)
 		{
