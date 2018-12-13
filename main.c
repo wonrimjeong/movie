@@ -51,8 +51,8 @@ int main(int argc, char *argv[]) {
 		printf("5. exit\n");
 		printf("-------------------- Menu --------------------\n\n");
 
-		printf("-- select an option : \n");//2.1 print menu message and get input option
-		scanf("%d", &option);
+		printf("-- select an option : \n");
+		scanf("%d", &option); //2.1 print menu message and get input option
 		
 		switch(option)
 		{
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
 				printf("printing all the movies in the list.....\n\n\n");
 				
 				ndPtr = list;
-				while (ndPtr != NULL /* repeat until the ndPtr points to the end node */)
+				while ( list_isEndNode(ndPtr) == 0 /* repeat until the ndPtr points to the end node */)
 				{
 					//2.2 print a movie data : use functions of movie.c and linkedList.c
 					void* list_getNextNd(void* nd);//ndPtr = the next node of the ndPtr;
@@ -75,7 +75,7 @@ int main(int argc, char *argv[]) {
 				scanf("%s", country);
 				
 				ndPtr = list;
-					while (fscanf(fp,"%s, %s, %i, %f", name, country, runTime, score) != EOF/* repeat until the ndPtr points to the end node */)
+					while (int list_isEndNode(void* nd)/* repeat until the ndPtr points to the end node */)
 				{
 					//2.3.2 print a movie data : use functions of movie.c and linkedList.c
 					ndPtr = ndPtr;//ndPtr = the next node of the ndPtr;
