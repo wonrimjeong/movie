@@ -19,7 +19,6 @@ int main(int argc, char *argv[]) {
 	void *list, *mvInfo; //pointers for linked list and a specific structure instance for a movie data
 	void *ndPtr; //void pointer for linked list node
 	
-	
 	//1. reading the movie.dat-----------------------------
 	fp = fopen("movie.dat","r"); //1.1 FILE open
 	
@@ -29,7 +28,7 @@ int main(int argc, char *argv[]) {
 	printf("Reading the data files...\n");
 	
 	//1.3 read each movie data from the file and add it to the linked list
-	while ( fscanf(fp,"%s, %s, %i, %f", name, country, &runTime, &score) != EOF /* read name, country, runtime and score*/ )
+	while ( fscanf(fp,"%s %s %i %f", name, country, &runTime, &score) != EOF /* read name, country, runtime and score*/ )
 	{	
 		mvInfo = mv_genMvInfo(name, score, runTime, country); //generate a movie info instance(mvInfo) with function mv_genMvInfo()
 		list_addTail(mvInfo, list);
@@ -38,7 +37,7 @@ int main(int argc, char *argv[]) {
 	fclose(fp);//1.4 FILE close
 	
 	
-	printf("Read done! 10 items are read\n");//2. program start
+	printf("Read done! %i items are read\n", list_len(list));//2. program start
 	
 	while(exit_flag == 0) 
 	{
@@ -51,8 +50,8 @@ int main(int argc, char *argv[]) {
 		printf("5. exit\n");
 		printf("-------------------- Menu --------------------\n\n");
 
-		printf("-- select an option : \n");
-		scanf("%d", &option); //2.1 print menu message and get input option
+		printf("-- select an option : ");
+		scanf("%i", &option); //2.1 print menu message and get input option
 		
 		switch(option)
 		{
@@ -66,23 +65,38 @@ int main(int argc, char *argv[]) {
 					ndPtr = list_getNextNd(ndPtr);//ndPtr = the next node of the ndPtr;
 					mvInfo = list_getNdObj(ndPtr);//get object of ndPtr to mvInfo void pointer
 					mv_print(mvInfo);//print the contents of the mvInfo
+						printf("-------------------\n");
 				}
+				
 				
 				break;
 				
 			case 2: //print movies of specific country
-				printf("select a country : \n");//2.3.1 get country name to search for
+				printf("select a country : ");//2.3.1 get country name to search for
 				scanf("%s", country);
 				
 				ndPtr = list;
+				int cnt = 0;
+				
 					while (list_isEndNode(ndPtr) == 0 /* repeat until the ndPtr points to the end node */)
 				{
 					//2.3.2 print a movie data : use functions of movie.c and linkedList.c
 					ndPtr = list_getNextNd(ndPtr);//ndPtr = the next node of the ndPtr;
 					mvInfo = list_getNdObj(ndPtr);//get object of ndPtr to mvInfo void pointer
-					mv_getCountry(mvInfo); //if the input country matches to the country of the movie,
+				
+					if(strcmp(country, mv_getCountry(mvInfo)) == 0)
+					{
+						mv_print(mvInfo);
+						printf("\n");
+						cnt++;
+					}//if the input country matches to the country of the movie,
 					//then print the contents of the mvInfo
+					
 				}
+				printf("--------------------\n");
+				printf("\n");
+				printf("totally %i movies are listed\n", cnt);
+				printf("\n");
 				
 				break;
 				
